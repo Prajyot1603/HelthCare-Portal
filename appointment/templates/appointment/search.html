@@ -1,0 +1,32 @@
+{% include 'base/header.html' %}
+{% block content %}
+<h3 class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"> 
+    <i class="fa fa-hospital-o" style="color: rgb(129, 129, 255);">  Health Hub</i>
+  </h3>
+<body style="background-color: rgb(239, 255, 255);">
+    {% if object %}
+    <div class="container">
+        <div style="text-align: center;"><a href="{% url 'dashboard' %}" class="btn btn-success btn-sm">Back Home</a></div><br>
+        <h4 class="text-center alert alert-success" >Today's Appointments</h4>
+        <div class="row">
+            {% for obj in object %}
+            <div class="col-lg-3">
+                <div class="card bg-warning" style="min-height:140px; cursor:pointer;">
+                    <div class="card-body">
+                        <p>Doctor Name: <b><a>{{ obj.Doctor_Name.Doctor_Name }}</a></b></p>
+                        <p>Date: <b> {{ obj.Date_of_Schedule }} </b></p>
+                        <p>Time:<b></Time:b>{{ obj.Time_of_Schedule }}</b></p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+    <div class="container">
+        <div style="text-align: center;"><a href="{% url 'dashboard' %}" class="btn btn-success btn-sm">Back Home</a></div><br>
+        <h4 class="text-align alert alert-warning">No appointments Today</h4>
+    </div>
+    {% endif %}
+</body>
+{% endblock %}
